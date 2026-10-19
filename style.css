@@ -1944,8 +1944,7 @@ em {
                 rgba(10, 10, 9, 0.55) 62%,
                 rgba(10, 10, 9, 0.9) 100%
             ),
-            url("images/mm.jpg") 60% 15% / cover no-repeat;
-    }
+            url("images/hero3.jpg") center 100% / auto 100% no-repeat;    }
 
     .hero-content {
         grid-template-columns: 1fr;
