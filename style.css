@@ -346,6 +346,8 @@ em {
     border: 0;
     background: transparent;
 
+    color: var(--white);
+
     cursor: pointer;
 }
 
@@ -409,7 +411,7 @@ em {
 
 
 .hero-copy .eyebrow {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.88);
 
     margin-bottom: 30px;
 }
@@ -1877,12 +1879,13 @@ em {
         background:
             linear-gradient(
                 180deg,
-                rgba(10, 10, 9, 0.8) 0%,
+                rgba(10, 10, 9, 0.7) 0%,
+                rgba(10, 10, 9, 0.38) 38%,
+                rgba(10, 10, 9, 0.55) 62%,
                 rgba(10, 10, 9, 0.9) 100%
             ),
-            url("images/mm.jpg") center / cover no-repeat;
+            url("images/mm.jpg") 60% 15% / cover no-repeat;
     }
-
 
     .hero-content {
         grid-template-columns: 1fr;
@@ -2088,7 +2091,7 @@ em {
     .service-card:nth-child(2),
     .service-card:nth-child(3),
     .service-card:nth-child(4) {
-        min-height: 300px;
+        min-height: 210px;
 
         border-left: 1px solid var(--border);
         border-right: 1px solid var(--border);
@@ -2103,7 +2106,7 @@ em {
 
 
     .service-number {
-        margin-bottom: 65px;
+        margin-bottom: 35px;
     }
 
 
@@ -2122,7 +2125,7 @@ em {
 
 
     .editorial-number {
-        margin-bottom: 50px;
+        display: none;
     }
 
 
