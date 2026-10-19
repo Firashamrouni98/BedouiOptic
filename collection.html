@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>La collection — Bedoui Optic</title>
+
+    <meta
+        name="description"
+        content="La collection Bedoui Optic : montures optiques et solaires disponibles à Soliman et Radès."
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="site-header is-scrolled">
+
+        <div class="container header-inner">
+
+            <a href="index.html" class="logo">
+                <span class="logo-main">BEDOUI</span>
+                <span class="logo-sub">OPTIC</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Navigation principale">
+                <a href="index.html#maison">La Maison</a>
+                <a href="index.html#services">Services</a>
+                <a href="collection.html">Collection</a>
+                <a href="index.html#boutiques">Boutiques</a>
+                <a href="index.html#instagram">Instagram</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="index.html#contact" class="btn btn-dark">
+                    Prendre rendez-vous
+                </a>
+            </div>
+
+            <button
+                class="menu-toggle"
+                aria-label="Ouvrir le menu"
+                type="button"
+            >
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- TITRE DE LA PAGE -->
+
+        <section class="catalogue-intro">
+
+            <div class="container">
+
+                <div class="section-kicker">
+                    La collection
+                </div>
+
+                <h1>
+                    Toutes nos
+                    <em>montures.</em>
+                </h1>
+
+                <p>
+                    Une sélection de montures optiques et de solaires,
+                    à essayer dans nos boutiques de Soliman et Radès.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- GRILLE -->
+
+        <section class="catalogue">
+
+            <div class="container">
+
+                <div class="catalogue-grid" id="catalogue-grid"></div>
+
+                <div class="catalogue-footer">
+
+                    <p class="catalogue-count" id="catalogue-count"></p>
+
+                    <button
+                        type="button"
+                        class="btn btn-dark catalogue-more"
+                        id="catalogue-more"
+                    >
+                        Voir plus
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-top">
+
+                <a href="index.html" class="footer-logo">
+                    <span class="logo-main">BEDOUI</span>
+                    <span class="logo-sub">OPTIC</span>
+                </a>
+
+                <div class="footer-navigation">
+
+                    <div class="footer-column">
+                        <p class="footer-title">Navigation</p>
+                        <a href="index.html#maison">La Maison</a>
+                        <a href="index.html#services">Services</a>
+                        <a href="collection.html">Collection</a>
+                        <a href="index.html#boutiques">Boutiques</a>
+                        <a href="index.html#instagram">Instagram</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <p class="footer-title">Boutiques</p>
+                        <a href="index.html#boutiques">Soliman</a>
+                        <a href="index.html#boutiques">Radès</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <p class="footer-title">Contact</p>
+                        <a href="tel:+21625599953">Soliman 25 599 953</a>
+                        <a href="tel:+21621381621">Radès 21 381 621</a>
+                        <a href="https://www.instagram.com/bedoui_optic/" target="_blank" rel="noopener noreferrer">
+                            Instagram
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Bedoui Optic. Tous droits réservés.</p>
+                <p>Soliman · Radès · Tunisie</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- MOBILE STICKY ACTIONS -->
+
+    <div class="mobile-actions">
+        <a href="tel:+21625599953">Appeler Soliman</a>
+        <a href="tel:+21621381621">Appeler Radès</a>
+    </div>
+
+
+    <script>
+
+    /* Menu mobile */
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.main-nav');
+
+    if (menuToggle && navigation) {
+        menuToggle.addEventListener('click', () => {
+            navigation.classList.toggle('is-open');
+            menuToggle.classList.toggle('is-active');
+        });
+    }
+
+
+    /* Catalogue : change seulement ce nombre quand tu ajoutes des photos */
+
+    const total = 2;
+    const perPage = 12;
+
+    let shown = 0;
+
+    const grid = document.querySelector('#catalogue-grid');
+    const moreButton = document.querySelector('#catalogue-more');
+    const count = document.querySelector('#catalogue-count');
+
+    function photoPath(n) {
+        return 'images/collection/' + String(n).padStart(3, '0') + '.jpg';
+    }
+
+    function showMore() {
+        const end = Math.min(shown + perPage, total);
+
+        for (let n = shown + 1; n <= end; n++) {
+            const item = document.createElement('div');
+            item.className = 'catalogue-item';
+
+            const img = document.createElement('img');
+            img.src = photoPath(n);
+            img.alt = 'Monture Bedoui Optic, modèle ' + n;
+            img.loading = 'lazy';
+
+            item.appendChild(img);
+            grid.appendChild(item);
+        }
+
+        shown = end;
+
+        count.textContent = shown + ' sur ' + total + ' modèles';
+
+        if (shown >= total) {
+            moreButton.hidden = true;
+        }
+    }
+
+    moreButton.addEventListener('click', showMore);
+
+    showMore();
+
+    </script>
+
+</body>
+</html>
